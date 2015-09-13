@@ -3,17 +3,34 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('chat', ['ionic'])
+angular
+  .module('chat', ['ionic'])
+  .controller('ChatCtrl', ChatCtrl);
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-  });
-})
+function ChatCtrl ($scope, $ionicScrollDelegate) {
+  var alternate;
+
+  $scope.data = {};
+  $scope.myId = '12345';
+  $scope.messages = [];
+
+  $scope.sendMessage = sendMessage;
+
+  ////////////
+
+  function sendMessage () {
+    if (!$scope.data.message || !$scope.data.message.length) return;
+
+    alternate = !alternate;
+    $scope.messages.push({
+      userId: alternate ? '12345' : '54321',
+      photo: alternate ?
+        'https://scontent-cdg2-1.xx.fbcdn.net/hphotos-xaf1/v/t1.0-9/s720x720/11393068_920096478013144_1201901050919221507_n.jpg?oh=b67348e306c32edf97c6f0f82492d07d&oe=56729CF5' :
+        'https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xap1/v/t1.0-9/45011_147000805322719_4607640_n.jpg?oh=d6fb3a947911c210ee0ffe962111da22&oe=569E8FDF&__gda__=1453796800_84a78e328d1e7e17102a4079f94bf4ec',
+      text: $scope.data.message
+    });
+
+    delete $scope.data.message;
+    $ionicScrollDelegate.scrollBottom(true);
+  }
+}
