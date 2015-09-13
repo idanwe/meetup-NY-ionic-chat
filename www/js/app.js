@@ -1,10 +1,9 @@
 // Ionic Starter App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
+Messages = new Meteor.Collection('messages');
+
 angular
-  .module('chat', ['ionic'])
+  .module('chat', ['ionic', 'angular-meteor'])
   .controller('ChatCtrl', ChatCtrl);
 
 function ChatCtrl ($scope, $ionicScrollDelegate) {
@@ -12,7 +11,7 @@ function ChatCtrl ($scope, $ionicScrollDelegate) {
 
   $scope.data = {};
   $scope.myId = '12345';
-  $scope.messages = [];
+  $scope.messages = $scope.$meteorCollection(Messages);
 
   $scope.sendMessage = sendMessage;
 
