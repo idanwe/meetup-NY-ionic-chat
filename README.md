@@ -39,3 +39,10 @@ In the client:
 3. Add login, register and logout
 4. Add to message wrapper div (`.message-list`) `ng-if="$root.currentUser`
 5. Add `currentUser._id` to message
+
+
+#### Step 4 - methods and publish
+
+1. Run `metoer remove insecure autopublish`
+2. Add `sendMessage` method at the server and at the client (the photo can demonstarate the optemistic ui)
+3. Add pubish and subscribe 'messages'
