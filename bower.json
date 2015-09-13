@@ -5,7 +5,8 @@
     "ionic": "driftyco/ionic-bower#1.1.0"
   },
   "dependencies": {
-    "meteor-client-side": "~0.2.3",
-    "angular-meteor": "1.0.0-rc.6"
+    "accounts-password-client-side": "~0.3.0",
+    "angular-meteor": "1.0.0-rc.6",
+    "meteor-client-side": "~0.2.3"
   }
 }

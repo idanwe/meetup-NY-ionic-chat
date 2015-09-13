@@ -22,3 +22,20 @@
 5. Add `Messages = new Meteor.Collection('messages');` to the client
 6. Assign angular meteor collection to $scope `$scope.messages = $scope.$meteorCollection(Messages);`
 7. Run the app: `ionic serve` && `cd server && meteor`
+
+#### Step 3 - Users
+
+In the server:
+1. Run `meteor add accounts-password`
+
+In the client:
+1. Run `bower install accounts-password-client-side`
+2. Add to `index.html`
+```
+    <script src="lib/accounts-base-client-side/dist/accounts-base-client-side.bundle.min.js"></script>
+    <script src="lib/accounts-password-client-side/dist/accounts-password-client-side.bundle.min.js"></script>
+    <script src="lib/angular-meteor.bundle.min.js"></script>
+```
+3. Add login, register and logout
+4. Add to message wrapper div (`.message-list`) `ng-if="$root.currentUser`
+5. Add `currentUser._id` to message
